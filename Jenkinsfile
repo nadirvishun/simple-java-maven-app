@@ -31,7 +31,7 @@ pipeline {
         }
         stage('deploy'){
             steps{
-                sshPublisher(publishers: [sshPublisherDesc(configName: '192.168.1.32-ssh', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'cp /home/test/my-app-1.0-SNAPSHOT.jar /home/test/my-app.jar', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/test', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/my-app-1.0-SNAPSHOT.jar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                sshPublisher(publishers: [sshPublisherDesc(configName: '192.168.1.32-ssh', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'cp /home/test/*.jar /home/test/my-app.jar', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/test', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: '**/*.jar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
     }
